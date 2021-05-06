@@ -1,5 +1,5 @@
 {
-    const currencyExchange = (amountPLN, currency, currencyName) => {
+    const currencyExchange = (amountPLN, currency) => {
         const exchangeEUR = 4.5481;
         const exchangeUSD = 3.7978;
         const exchangeCHF = 4.1279;
@@ -19,19 +19,23 @@
         }
     };
 
+    const resultatText = (result, currency) => {
+        const getResult = document.querySelector(".js-result");
+        getResult.innerText = `${result.toFixed(2)} ${currency}.`;
+    };
+
     const formSubmit = (event) => {
         event.preventDefault();
 
         const inputElement = document.querySelector(".js-currencyPLN");
         const chooseCurrency = document.querySelector(".js-selectCurrency");
-        const getResult = document.querySelector(".js-result");
 
         const amountPLN = +inputElement.value;
         const currency = chooseCurrency.value;
 
         const result = currencyExchange(amountPLN, currency);
 
-        getResult.innerText = `${result.toFixed(2)} ${currency}.`;
+        resultatText(result, currency);
     };
 
     const init = () => {
